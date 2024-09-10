@@ -462,6 +462,30 @@ do --Stats tab
             Connections.autoDefense = nil
         end
     end})
+
+    local AutoGun_Toggle = StatsTab:Toggle({Text = "Level Gun", Callback = function(v)
+        if v then
+            Connections.autoGun = RunService.RenderStepped:Connect(function()
+                ReplicatedStorage.Remotes.CommF_:InvokeServer("AddPoint", "Gun", 1) 
+                task.wait(.1)
+            end)
+        else
+            Connections.autoGun:Disconnect()
+            Connections.autoGun = nil
+        end
+    end})
+
+    local AutoFruit_Toggle = StatsTab:Toggle({Text = "Level Gun", Callback = function(v)
+        if v then
+            Connections.autoFruit = RunService.RenderStepped:Connect(function()
+                ReplicatedStorage.Remotes.CommF_:InvokeServer("AddPoint", "Demon Fruit", 1) 
+                task.wait(.1)
+            end)
+        else
+            Connections.autoFruit:Disconnect()
+            Connections.autoFruit = nil
+        end
+    end})
 end
 
 local ShopTab = Window:Tab({Text = "Shop"})
